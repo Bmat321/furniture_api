@@ -32,12 +32,12 @@ app.use("/api/products", productRouter);
 app.use("/api/cart", cartRouter);
 app.use("/api/orders", orderRouter);
 
-// app.use((err, _, res) => {
-//   const errorStatus = err.status || 500;
-//   const errorMessage = err.message || "Something went wrong!";
+app.use((err, _, res, next) => {
+  const errorStatus = err.status || 500;
+  const errorMessage = err.message || "Something went wrong!";
 
-//   return res.status(errorStatus).send(errorMessage);
-// });
+  return res.status(errorStatus).send(errorMessage);
+});
 
 app.listen(process.env.PORT || Port, () =>
   console.log(`Example app listening on port ${process.env.PORT}!`)
